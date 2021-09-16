@@ -11,7 +11,10 @@ import (
 func main() {
 	routers := server.Routers()
 
-	n := negroni.Classic()
+	n := negroni.New()
+
+	n.Use(negroni.NewRecovery())
+	n.Use(negroni.NewLogger())
 
   n.Use(middleware.NewXRequestID())
 
