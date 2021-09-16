@@ -1,20 +1,18 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
+	"github.com/YasminTeles/new-server/server"
 	"github.com/urfave/negroni"
 )
 
 func main() {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
-		fmt.Fprintf(w, "Welcome to the home page!")
-	})
+	routers := server.Routers()
 
 	n := negroni.Classic()
-	n.UseHandler(mux)
+
+	n.UseHandler(routers)
 
 	http.ListenAndServe(":3000", n)
 }
