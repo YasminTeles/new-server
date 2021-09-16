@@ -12,5 +12,9 @@ func Routers() *http.ServeMux {
 		fmt.Fprintf(w, "Welcome to the home page!")
 	})
 
+	routers.HandleFunc("/healthcheck", func(w http.ResponseWriter, req *http.Request) {
+		fmt.Fprintf(w, "Working!")
+	})
+
 	return routers
 }
