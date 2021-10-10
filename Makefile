@@ -12,3 +12,8 @@ test:
 build:
 	@go build -v -ldflags "-X 'github.com/YasminTeles/new-server/server.GitCommit=$(VERSION)'" -o main .
 
+docker-build:
+	@docker build -t server .
+
+docker-run:
+	@docker run -p 3000:3000 -it server
