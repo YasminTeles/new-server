@@ -30,11 +30,15 @@ make run
 make test
 ```
 
+## Versions
+
+We use [Semantic version](http://semver.org) for versioning. For versions available, see [Changelog](Changelog.md).
+
 ## Contribute Us
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create.
-Any contributions you make are greatly appreciated. See [contribute policy](CONTRIBUTE.md).
+Any contributions you make are greatly appreciated. See [contribute policy](Contribute.md).
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE.md).
+This project is licensed under the [MIT License](LICENSE).
