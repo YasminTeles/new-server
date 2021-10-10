@@ -20,3 +20,6 @@ docker-run:
 
 docker-kill:
 	@docker kill new-server
+
+lint:
+	golangci-lint run ./... --enable-all
