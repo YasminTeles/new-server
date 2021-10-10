@@ -1,5 +1,8 @@
 VERSION := $(shell git rev-list --oneline -1 HEAD)
 
+setup:
+	@go mod download
+
 run:
 	@go run -ldflags "-X 'github.com/YasminTeles/new-server/server.GitCommit=$(VERSION)'" main.go
 
