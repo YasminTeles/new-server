@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/YasminTeles/new-server/server"
 	"github.com/YasminTeles/new-server/middleware"
+	"github.com/YasminTeles/new-server/server"
 	"github.com/urfave/negroni"
 )
 
@@ -14,9 +14,8 @@ func main() {
 	n := negroni.New()
 
 	n.Use(negroni.NewRecovery())
-	n.Use(negroni.NewLogger())
-
-  n.Use(middleware.NewXRequestID())
+	n.Use(middleware.NewXRequestID())
+	n.Use(middleware.NewLogger())
 
 	n.UseHandler(routers)
 
