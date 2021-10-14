@@ -5,46 +5,43 @@ import (
 	"net/http/httptest"
 	"testing"
 
-  "github.com/google/uuid"
+	"github.com/google/uuid"
+	"github.com/stretchr/testify/assert"
 )
 
+const XRequestIDHeader = "X-Request-ID"
+
 func TestNonExistXRequestIDInHeader(t *testing.T) {
+	t.Parallel()
+
 	recorder := httptest.NewRecorder()
 	req, _ := http.NewRequest("GET", "/healthcheck", nil)
 
-  xRequestID := NewXRequestID()
-  xRequestID.ServeHTTP(recorder, req, func(w http.ResponseWriter, r *http.Request) {})
+	xRequestID := NewXRequestID()
+	xRequestID.ServeHTTP(recorder, req, func(w http.ResponseWriter, r *http.Request) {})
 
-	if requestID := req.Header.Get("X-Request-ID"); requestID == "" {
-		t.Fatalf("Expected request X-Request-Id not to be empty, got `%v`", requestID)
-	}
+	assert.NotEmpty(t, req.Header.Get(XRequestIDHeader))
+	assert.NotEmpty(t, recorder.HeaderMap.Get(XRequestIDHeader))
 
-	if responseID := recorder.HeaderMap.Get("X-Request-ID"); responseID == "" {
-		t.Fatalf("Expected response X-Request-Id not to be empty, got `%v`", responseID)
-	}
+	_, err := uuid.Parse(req.Header.Get(XRequestIDHeader))
+	assert.NoError(t, err)
 
-  if _,err := uuid.Parse(req.Header.Get("X-Request-ID")); err != nil {
-    t.Fatalf("Expected request X-Request-Id to be an uuid")
-  }
-
-  if _,err := uuid.Parse(recorder.HeaderMap.Get("X-Request-ID")); err != nil {
-    t.Fatalf("Expected response X-Request-Id to be an uuid")
-  }
+	_, err = uuid.Parse(recorder.HeaderMap.Get(XRequestIDHeader))
+	assert.NoError(t, err)
 }
 
 func TestExistXRequestIDInHeader(t *testing.T) {
+	t.Parallel()
+
 	recorder := httptest.NewRecorder()
 	req, _ := http.NewRequest("GET", "/healthcheck", nil)
-  req.Header.Set("X-Request-ID", "test-id")
 
-  xRequestID := NewXRequestID()
-  xRequestID.ServeHTTP(recorder, req, func(w http.ResponseWriter, r *http.Request) {})
+	xRequestIDValue := "test-id"
+	req.Header.Set(XRequestIDHeader, xRequestIDValue)
 
-	if requestID := req.Header.Get("X-Request-ID"); requestID != "test-id" {
-		t.Fatalf("Expected request X-Request-Id to be `test-id`, got `%v`", requestID)
-	}
+	xRequestID := NewXRequestID()
+	xRequestID.ServeHTTP(recorder, req, func(w http.ResponseWriter, r *http.Request) {})
 
-	if responseID := recorder.HeaderMap.Get("X-Request-ID"); responseID != "test-id" {
-		t.Fatalf("Expected response X-Request-Id to be `test-id`, got `%v`", responseID)
-	}
+	assert.Equal(t, xRequestIDValue, req.Header.Get(XRequestIDHeader))
+	assert.Equal(t, xRequestIDValue, recorder.HeaderMap.Get(XRequestIDHeader))
 }
