@@ -1,23 +1,16 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
-	"github.com/YasminTeles/new-server/middleware"
 	"github.com/YasminTeles/new-server/server"
-	"github.com/urfave/negroni"
 )
 
 func main() {
-	routers := server.Routers()
+	server := server.NewServer()
 
-	n := negroni.New()
+	fmt.Println(`Starting server on port 3000...`)
 
-	n.Use(negroni.NewRecovery())
-	n.Use(middleware.NewXRequestID())
-	n.Use(middleware.NewLogger())
-
-	n.UseHandler(routers)
-
-	http.ListenAndServe(":3000", n)
+	http.ListenAndServe(":3000", server)
 }
