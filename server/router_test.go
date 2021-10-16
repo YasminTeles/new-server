@@ -6,9 +6,13 @@ import (
 	"net/http"
 	"strings"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
-func Test_EndToEnd_Healthcheck(t *testing.T) {
+func TestHealthcheckEndPoint(t *testing.T) {
+	t.Parallel()
+
 	port := 3000
 
 	request, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("http://localhost:%d/healthcheck", port), nil)
@@ -16,18 +20,12 @@ func Test_EndToEnd_Healthcheck(t *testing.T) {
 	client := http.Client{}
 	response, _ := client.Do(request)
 
-	if http.StatusOK != response.StatusCode {
-		t.Errorf("status code got %q, want %q", response.StatusCode, http.StatusOK)
-	}
+	assert.Equal(t, http.StatusOK, response.StatusCode)
 
 	byteBody, _ := ioutil.ReadAll(response.Body)
+	message := strings.Trim(string(byteBody), "\n")
 
-	want := "Working!"
-	got := strings.Trim(string(byteBody), "\n")
-
-	if want != got {
-		t.Errorf("body got %q, want %q", got, want)
-	}
+	assert.Equal(t, "Working!", message)
 
 	response.Body.Close()
 }
