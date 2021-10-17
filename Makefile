@@ -1,16 +1,18 @@
-VERSION := $(shell git rev-list --oneline -1 HEAD)
+VERSION := 'github.com/YasminTeles/new-server/server.GitTag=$(shell git describe --tags --always)'
+COMMIT := 'github.com/YasminTeles/new-server/server.GitCommit=$(shell git rev-list --oneline -1 HEAD)'
+BUILD := 'github.com/YasminTeles/new-server/server.BuildData=$(shell date +%F%t%T)'
 
 setup:
 	@go mod download
 
 run:
-	@go run -ldflags "-X 'github.com/YasminTeles/new-server/server.GitCommit=$(VERSION)'" main.go
+	@go run -ldflags "-X $(COMMIT) -X $(VERSION) -X $(BUILD)" main.go
 
 test:
 	@go test -v ./...
 
 build:
-	@go build -v -ldflags "-X 'github.com/YasminTeles/new-server/server.GitCommit=$(VERSION)'" -o main .
+	@go build -v -ldflags "-X $(COMMIT) -X $(VERSION) -X $(BUILD)" -o main .
 
 docker-build:
 	@docker build -t server .
