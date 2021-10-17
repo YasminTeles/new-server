@@ -1,35 +1,15 @@
 package server
 
 import (
-	"encoding/json"
-	"fmt"
-	"net/http"
-	"strings"
+	"github.com/YasminTeles/new-server/handlers"
+	"github.com/julienschmidt/httprouter"
 )
 
-var (
-	GitCommit string
-	GitTag    string
-	BuildData string
-)
+func Router() *httprouter.Router {
+	router := httprouter.New()
 
-func Routers() *http.ServeMux {
-	routers := http.NewServeMux()
+	router.GET("/healthcheck", handlers.Healthcheck)
+	router.GET("/version", handlers.Version)
 
-	routers.HandleFunc("/healthcheck", func(w http.ResponseWriter, req *http.Request) {
-		fmt.Fprintf(w, "Working!")
-	})
-
-	routers.HandleFunc("/version", func(w http.ResponseWriter, req *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-
-		resp := make(map[string]string)
-		resp["version"] = GitTag
-		resp["build"] = strings.Replace(BuildData, "\t", " ", 1)
-		resp["commit"] = GitCommit
-
-		json.NewEncoder(w).Encode(resp)
-	})
-
-	return routers
+	return router
 }

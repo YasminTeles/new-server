@@ -1,6 +1,6 @@
-VERSION := 'github.com/YasminTeles/new-server/server.GitTag=$(shell git describe --tags --always)'
-COMMIT := 'github.com/YasminTeles/new-server/server.GitCommit=$(shell git rev-list --oneline -1 HEAD)'
-BUILD := 'github.com/YasminTeles/new-server/server.BuildData=$(shell date +%F%t%T)'
+VERSION := 'github.com/YasminTeles/new-server/handlers.GitTag=$(shell git describe --tags --always)'
+COMMIT := 'github.com/YasminTeles/new-server/handlers.GitCommit=$(shell git rev-list --oneline -1 HEAD)'
+BUILD := 'github.com/YasminTeles/new-server/handlers.BuildData=$(shell date +%F%t%T)'
 
 setup:
 	@go mod download

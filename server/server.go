@@ -6,7 +6,7 @@ import (
 )
 
 func NewServer() *negroni.Negroni {
-	routers := Routers()
+	router := Router()
 
 	server := negroni.New()
 
@@ -14,7 +14,7 @@ func NewServer() *negroni.Negroni {
 	server.Use(middleware.NewXRequestID())
 	server.Use(middleware.NewLogger())
 
-	server.UseHandler(routers)
+	server.UseHandler(router)
 
 	return server
 }
