@@ -18,16 +18,16 @@ func NewXRequestID() *XRequestID {
 	}
 }
 
-func (requestID *XRequestID) ServeHTTP(res http.ResponseWriter, req *http.Request, next http.HandlerFunc) {
-	requestID.setHeader(res, req)
+func (requestID *XRequestID) ServeHTTP(response http.ResponseWriter, request *http.Request, next http.HandlerFunc) {
+	requestID.setHeader(response, request)
 
-	next(res, req)
+	next(response, request)
 }
 
-func (requestID *XRequestID) setHeader(res http.ResponseWriter, req *http.Request) {
-	if req.Header.Get(requestID.header) == "" {
-		req.Header.Set(requestID.header, requestID.value)
+func (requestID *XRequestID) setHeader(response http.ResponseWriter, request *http.Request) {
+	if request.Header.Get(requestID.header) == "" {
+		request.Header.Set(requestID.header, requestID.value)
 	}
 
-	res.Header().Set(requestID.header, req.Header.Get(requestID.header))
+	response.Header().Set(requestID.header, request.Header.Get(requestID.header))
 }
