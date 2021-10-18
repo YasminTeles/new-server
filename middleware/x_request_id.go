@@ -3,6 +3,7 @@ package middleware
 import (
 	"net/http"
 
+	"github.com/YasminTeles/new-server/context"
 	"github.com/google/uuid"
 )
 
@@ -30,4 +31,5 @@ func (requestID *XRequestID) setHeader(response http.ResponseWriter, request *ht
 	}
 
 	response.Header().Set(requestID.header, request.Header.Get(requestID.header))
+	context.SetRequestID(request.Context(), requestID.value)
 }
