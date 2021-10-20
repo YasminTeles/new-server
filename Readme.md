@@ -6,6 +6,11 @@ A simple server in Golang.
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purpose.
 
+There are two ways to get started:
+
+<details>
+<summary>Get started with local Golang;</summary>
+
 ### Prerequisites
 
 - [Golang](https://golang.org/) - Go is an open source programming language that makes it easy to build simple, reliable, and efficient software. You need the version 1.17.
@@ -29,6 +34,36 @@ make run
 ```Makefile
 make test
 ```
+</details>
+
+<details>
+<summary>Get started with Docker;</summary>
+
+### Prerequisites
+
+- [Docker](https://www.docker.com/) - is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly.
+
+### Installation
+
+1. Clone this repository;
+
+2. Run the following commands:
+
+```Makefile
+cd new-server
+make docker-build
+make docker-run
+```
+
+3. Open <http://localhost:3000/healthcheck> with your browser to see the result.
+
+4. For kill container's Docker, run the following command:
+
+```Makefile
+make docker-kill
+```
+
+</details>
 
 ## Usage
 
