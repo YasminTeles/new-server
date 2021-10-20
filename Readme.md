@@ -1,6 +1,8 @@
 # New Server
 
-A simple server in Golang.
+A boilerplate/starter project for quickly building RESTful APIs using Golang, Negroni, and HttpRouter.
+
+It's intended as a starting point for your product or service. The server comes with some built-in features, such as unit and integration tests, continuous integration, docker support. For more details, check the [features list](#features).
 
 ## Getting Started
 
@@ -31,9 +33,17 @@ make run
 
 ### Running tests
 
+1. Run the server
+```Makefile
+make run
+```
+
+2. In another terminal, run the tests:
+
 ```Makefile
 make test
 ```
+
 </details>
 
 <details>
@@ -75,9 +85,19 @@ This simple server provides the following end points:
 - `GET /healthcheck`
  That returns the health of the server running. It's useful for check if the server can be able handling requests.
 
+## Features
+
+- **Docker support**;
+- **Structured and centralized logger**: using [Logrus](https://github.com/sirupsen/logrus);
+- **Continuous integration**: using [GitHub Actions](https://github.com/features/actions);
+- **Linting**: using [Golangci-lint](https://github.com/golangci/golangci-lint);
+- **Testing**: using [Testify](https://github.com/stretchr/testify);
+- **Request ID in request header and context**;
+- **Structured and centralized settings**: using [Viper](https://github.com/spf13/viper);
+
 ## Versions
 
-We use [Semantic version](http://semver.org) for versioning. For versions available, see [Changelog](Changelog.md).
+We use [Semantic version](http://semver.org) for versioning. For versions available, see [changelog](Changelog.md).
 
 ## Contribute Us
 
