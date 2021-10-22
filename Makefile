@@ -2,26 +2,33 @@ VERSION := 'github.com/YasminTeles/new-server/handlers.GitTag=$(shell git descri
 COMMIT := 'github.com/YasminTeles/new-server/handlers.GitCommit=$(shell git rev-list --oneline -1 HEAD)'
 BUILD := 'github.com/YasminTeles/new-server/handlers.BuildData=$(shell date +%F%t%T)'
 
-setup:
+help: ## Show help.
+	@printf "A set of development commands.\n"
+	@printf "\nUsage:\n"
+	@printf "\t make \033[36m<commands>\033[0m\n"
+	@printf "\nThe Commands are:\n\n"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\t\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+setup: ## Setup server.
 	@go mod download
 
-run:
+run: ## Run local server.
 	@go run -ldflags "-X $(COMMIT) -X $(VERSION) -X $(BUILD)" main.go
 
-test:
+test: ## Run test.
 	@go test -v ./...
 
-build:
+build: ## Build server.
 	@go build -v -ldflags "-X $(COMMIT) -X $(VERSION) -X $(BUILD)" -o main .
 
-docker-build:
+docker-build: ## Build container's Docker.
 	@docker build -t server .
 
-docker-run:
+docker-run: ## Run container's Docker.
 	@docker run --name new-server -p 3000:3000 -it server
 
-docker-kill:
+docker-kill: ## Kill container's Docker.
 	@docker kill new-server
 
-lint:
+lint: ## Run lint.
 	golangci-lint run ./... --enable-all
