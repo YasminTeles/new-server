@@ -1,16 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
-
-	"github.com/YasminTeles/new-server/server"
+	"github.com/YasminTeles/new-server/settings"
 )
 
 func main() {
-	server := server.NewServer()
+	settings.LoadSettings()
 
-	fmt.Println(`Starting server on port 3000...`)
-
-	http.ListenAndServe(":3000", server)
+	settings.ListenAndServe()
 }
