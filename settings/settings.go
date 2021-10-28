@@ -23,7 +23,7 @@ func LoadSettings() {
 	Config, err = loadConfig()
 
 	if err != nil {
-		log.Fatal("cannot load config:", err)
+		log.Fatal("cannot load config.")
 	}
 
 	Config.Print()
@@ -42,7 +42,9 @@ func loadConfig() (config *Settings, err error) {
 		return
 	}
 
-	viper.Unmarshal(&config)
+	if err = viper.Unmarshal(&config); err != nil {
+		return
+	}
 
 	return
 }

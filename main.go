@@ -1,4 +1,4 @@
-//nolint:gochecknoinits
+//nolint:gochecknoinits,exhaustivestruct
 package main
 
 import (

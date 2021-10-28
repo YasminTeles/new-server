@@ -1,10 +1,12 @@
-package middleware
+package middleware_test
 
 import (
+	"context"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 
+	"github.com/YasminTeles/new-server/middleware"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 )
@@ -15,18 +17,18 @@ func TestNonExistXRequestIDInHeader(t *testing.T) {
 	t.Parallel()
 
 	recorder := httptest.NewRecorder()
-	req, _ := http.NewRequest("GET", "/healthcheck", nil)
+	request, _ := http.NewRequestWithContext(context.Background(), http.MethodGet, "/healthcheck", nil)
 
-	xRequestID := NewXRequestID()
-	xRequestID.ServeHTTP(recorder, req, func(w http.ResponseWriter, r *http.Request) {})
+	xRequestID := middleware.NewXRequestID()
+	xRequestID.ServeHTTP(recorder, request, func(w http.ResponseWriter, r *http.Request) {})
 
-	assert.NotEmpty(t, req.Header.Get(XRequestIDHeader))
-	assert.NotEmpty(t, recorder.HeaderMap.Get(XRequestIDHeader))
+	assert.NotEmpty(t, request.Header.Get(XRequestIDHeader))
+	assert.NotEmpty(t, recorder.Header().Get(XRequestIDHeader))
 
-	_, err := uuid.Parse(req.Header.Get(XRequestIDHeader))
+	_, err := uuid.Parse(request.Header.Get(XRequestIDHeader))
 	assert.NoError(t, err)
 
-	_, err = uuid.Parse(recorder.HeaderMap.Get(XRequestIDHeader))
+	_, err = uuid.Parse(recorder.Header().Get(XRequestIDHeader))
 	assert.NoError(t, err)
 }
 
@@ -34,14 +36,14 @@ func TestExistXRequestIDInHeader(t *testing.T) {
 	t.Parallel()
 
 	recorder := httptest.NewRecorder()
-	req, _ := http.NewRequest("GET", "/healthcheck", nil)
+	req, _ := http.NewRequestWithContext(context.Background(), http.MethodGet, "/healthcheck", nil)
 
 	xRequestIDValue := "test-id"
 	req.Header.Set(XRequestIDHeader, xRequestIDValue)
 
-	xRequestID := NewXRequestID()
+	xRequestID := middleware.NewXRequestID()
 	xRequestID.ServeHTTP(recorder, req, func(w http.ResponseWriter, r *http.Request) {})
 
 	assert.Equal(t, xRequestIDValue, req.Header.Get(XRequestIDHeader))
-	assert.Equal(t, xRequestIDValue, recorder.HeaderMap.Get(XRequestIDHeader))
+	assert.Equal(t, xRequestIDValue, recorder.Header().Get(XRequestIDHeader))
 }

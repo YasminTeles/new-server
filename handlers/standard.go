@@ -7,8 +7,10 @@ import (
 	"strings"
 
 	"github.com/julienschmidt/httprouter"
+	log "github.com/sirupsen/logrus"
 )
 
+//nolint:gochecknoglobals
 var (
 	GitCommit string
 	GitTag    string
@@ -20,7 +22,10 @@ func Version(response http.ResponseWriter, request *http.Request, params httprou
 
 	version := getVersion()
 
-	json.NewEncoder(response).Encode(version)
+	err := json.NewEncoder(response).Encode(version)
+	if err != nil {
+		log.Fatal("Error happened in JSON marshal.")
+	}
 }
 
 func getVersion() map[string]string {

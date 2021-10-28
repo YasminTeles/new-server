@@ -1,7 +1,9 @@
-package middleware
+//nolint:gochecknoglobals,lll
+package middleware_test
 
 import (
 	"bytes"
+	"context"
 	"fmt"
 	"net/http"
 	"net/http/httptest"
@@ -9,6 +11,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/YasminTeles/new-server/middleware"
 	"github.com/stretchr/testify/assert"
 	"github.com/urfave/negroni"
 )
@@ -22,16 +25,16 @@ func TestLogger(t *testing.T) {
 	t.Parallel()
 
 	recorder := negroni.NewResponseWriter(httptest.NewRecorder())
-	request, _ := http.NewRequest("GET", "/healthcheck", nil)
+	request, _ := http.NewRequestWithContext(context.Background(), http.MethodGet, "/healthcheck", nil)
 
 	requestID := "request-id"
 	request.Header.Set("X-Request-ID", requestID)
 
-	logger := NewLogger()
-	logger.log.Out = &bytes.Buffer{}
+	logger := middleware.NewLogger()
+	logger.Log.Out = &bytes.Buffer{}
 	logger.ServeHTTP(recorder, request, func(w http.ResponseWriter, r *http.Request) {})
 
-	lines := strings.Split(strings.TrimSpace(logger.log.Out.(*bytes.Buffer).String()), "\n")
+	lines := strings.Split(strings.TrimSpace(logger.Log.Out.(*bytes.Buffer).String()), "\n")
 
 	expected := fmt.Sprintf(`{"X-Request-ID":"%s","hostname":"","level":"info","method":"GET","msg":"Started handling request","request":"","time":"%s"}`, requestID, nowToday)
 

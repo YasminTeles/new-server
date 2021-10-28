@@ -2,7 +2,9 @@ package context
 
 import "context"
 
-const ContextKeyRequestID string = "requestID"
+type contextKey int
+
+const ContextKeyRequestID contextKey = iota
 
 func SetRequestID(ctx context.Context, requestID string) context.Context {
 	return context.WithValue(ctx, ContextKeyRequestID, requestID)

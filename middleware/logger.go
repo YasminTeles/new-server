@@ -1,3 +1,4 @@
+//nolint:exhaustivestruct
 package middleware
 
 import (
@@ -9,7 +10,7 @@ import (
 )
 
 type Logger struct {
-	log   *logrus.Logger
+	Log   *logrus.Logger
 	start time.Time
 }
 
@@ -23,7 +24,8 @@ func NewLogger() *Logger {
 	})
 
 	return &Logger{
-		log: log,
+		Log:   log,
+		start: time.Now(),
 	}
 }
 
@@ -38,7 +40,7 @@ func (logger *Logger) ServeHTTP(response http.ResponseWriter, request *http.Requ
 func (logger *Logger) started(request *http.Request) {
 	requestID := request.Header.Get("X-Request-ID")
 
-	logger.log.WithFields(logrus.Fields{
+	logger.Log.WithFields(logrus.Fields{
 		"X-Request-ID": requestID,
 		"method":       request.Method,
 		"request":      request.RequestURI,
@@ -51,7 +53,7 @@ func (logger *Logger) started(request *http.Request) {
 func (logger *Logger) finished(response http.ResponseWriter, request *http.Request) {
 	requestID := request.Header.Get("X-Request-ID")
 
-	logger.log.WithFields(logrus.Fields{
+	logger.Log.WithFields(logrus.Fields{
 		"X-Request-ID": requestID,
 		"method":       request.Method,
 		"hostname":     request.Host,

@@ -1,3 +1,4 @@
+//nolint:testpackage
 package settings
 
 import (
