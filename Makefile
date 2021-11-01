@@ -16,7 +16,7 @@ run: ## Run local server.
 	@go run -ldflags "-X $(COMMIT) -X $(VERSION) -X $(BUILD)" main.go
 
 test: ## Run test.
-	@go test -v ./...
+	@go test -v ./... -covermode=atomic
 
 build: ## Build server.
 	@go build -v -ldflags "-X $(COMMIT) -X $(VERSION) -X $(BUILD)" -o main .
