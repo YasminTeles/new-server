@@ -3,10 +3,10 @@ package settings
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/YasminTeles/new-server/server"
+	log "github.com/sirupsen/logrus"
 )
 
 func ListenAndServe() {
@@ -17,7 +17,7 @@ func ListenAndServe() {
 
 	err := http.ListenAndServe(listeningPort, server)
 	if err != nil {
-		log.Fatalf("Error happened in listen and server. Err: %s", err)
+		log.Fatal("Error happened in listen and server.")
 	}
 }
 

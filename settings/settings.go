@@ -4,10 +4,10 @@ package settings
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"path/filepath"
 	"runtime"
 
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
 
@@ -62,7 +62,7 @@ func printConfigPath(path, environment string) {
 func (config *Settings) Print() {
 	printable, err := json.MarshalIndent(config, "", "  ")
 	if err != nil {
-		log.Fatalf(err.Error())
+		log.Fatal(err.Error())
 	}
 
 	fmt.Printf("%s\n", string(printable))
