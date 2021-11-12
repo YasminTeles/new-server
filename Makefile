@@ -1,3 +1,5 @@
+.PHONY: help setup run test build docker-build docker-run docker-kill lint update-dependencies
+
 VERSION := 'github.com/YasminTeles/new-server/handlers.GitTag=$(shell git describe --tags --always)'
 COMMIT := 'github.com/YasminTeles/new-server/handlers.GitCommit=$(shell git rev-list --oneline -1 HEAD)'
 BUILD := 'github.com/YasminTeles/new-server/handlers.BuildData=$(shell date +%F%t%T)'
