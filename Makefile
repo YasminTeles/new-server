@@ -1,3 +1,5 @@
+.PHONY: help setup run test build docker-build docker-run docker-kill lint update-dependencies
+
 VERSION := 'github.com/YasminTeles/new-server/handlers.GitTag=$(shell git describe --tags --always)'
 COMMIT := 'github.com/YasminTeles/new-server/handlers.GitCommit=$(shell git rev-list --oneline -1 HEAD)'
 BUILD := 'github.com/YasminTeles/new-server/handlers.BuildData=$(shell date +%F%t%T)'
@@ -31,7 +33,7 @@ docker-kill: ## Kill container's Docker.
 	@docker kill new-server
 
 lint: ## Run lint.
-	golangci-lint run ./... --enable-all
+	@docker run --rm --volume "$(pwd):/app" -w /app golangci/golangci-lint:v1.43.0 golangci-lint run --enable-all -v
 
 update-dependencies: ## Update all dependencies.
 	@go get -u
