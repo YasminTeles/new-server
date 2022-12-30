@@ -2,6 +2,7 @@
 package main
 
 import (
+	"github.com/YasminTeles/new-server/server"
 	"github.com/YasminTeles/new-server/settings"
 	log "github.com/sirupsen/logrus"
 )
@@ -15,5 +16,5 @@ func init() {
 func main() {
 	settings.LoadSettings()
 
-	settings.ListenAndServe()
+	server.ListenAndServe()
 }

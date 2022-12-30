@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"path/filepath"
 	"runtime"
+	"time"
 
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
@@ -14,8 +15,10 @@ import (
 var Config *Settings
 
 type Settings struct {
-	Port     string `mapstructure:"port"`
-	LogLevel int    `mapstructure:"logLevel"`
+	Port        string        `mapstructure:"port"`
+	LogLevel    int           `mapstructure:"logLevel"`
+	Timeout     time.Duration `mapstructure:"timeout"`
+	IdleTimeout time.Duration `mapstructure:"idleTimeout"`
 }
 
 func LoadSettings() {
