@@ -19,30 +19,30 @@ There are two ways to get started:
 
 ### Installation
 
-1. Clone this repository;
+1. Clone this repository and access the folder project;
 
 2. Run the following commands:
 
-```Makefile
-cd new-server
-make setup
-make run
-```
+    ```bash
+    make setup
+    make run
+    ```
 
 3. Open <http://localhost:3000/healthcheck> with your browser to see the result.
 
 ### Running tests
 
 1. Run the server
-```Makefile
-make run
-```
+
+    ```bash
+    make run
+    ```
 
 2. In another terminal, run the tests:
 
-```Makefile
-make test
-```
+    ```bash
+    make test
+    ```
 
 </details>
 
@@ -55,23 +55,22 @@ make test
 
 ### Installation
 
-1. Clone this repository;
+1. Clone this repository and access the folder project;
 
 2. Run the following commands:
 
-```Makefile
-cd new-server
-make docker-build
-make docker-run
-```
+    ```bash
+    make docker-build
+    make docker-run
+    ```
 
 3. Open <http://localhost:3000/healthcheck> with your browser to see the result.
 
 4. For kill container's Docker, run the following command:
 
-```Makefile
-make docker-kill
-```
+    ```bash
+    make docker-kill
+    ```
 
 </details>
 
@@ -99,11 +98,10 @@ This simple server provides the following end points:
 
 We use [Semantic version](http://semver.org) for versioning. For versions available, see [changelog](Changelog.md).
 
-## Contribute Us
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create.
-Any contributions you make are greatly appreciated. See [contribute policy](Contribute.md).
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+## Contact me
+
+I'm always up for a chat. If you have a question or suggestion, You'll try to contact me through [my site](https://yasminteles.com).
