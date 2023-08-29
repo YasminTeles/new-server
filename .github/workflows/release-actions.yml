@@ -28,9 +28,9 @@ jobs:
         run:  yarn add semantic-release@v18.0.0  @semantic-release/changelog @semantic-release/git
 
       - name: Generate an release
+        run: yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: yarn semantic-release
 
   Build:
     needs: Release
@@ -38,6 +38,12 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
+
+      - name: Setup Golang
+        uses: actions/setup-go@v4
+        with:
+          go-version-file: './go.mod'
+          cache: false
 
       - name: Setup project
         run: make setup
