@@ -31,7 +31,7 @@ docker-kill: ## Kill container's Docker.
 	@docker kill new-server
 
 lint: ## Run lint.
-	golangci-lint run ./... --enable-all
+	golangci-lint run ./...
 
 update-dependencies: ## Update all dependencies.
 	@go get -u

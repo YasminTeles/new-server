@@ -4,7 +4,7 @@ package server_test
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 	"testing"
@@ -24,7 +24,7 @@ func TestHealthcheckEndPoint(t *testing.T) {
 
 	assert.Equal(t, http.StatusOK, response.StatusCode)
 
-	byteBody, _ := ioutil.ReadAll(response.Body)
+	byteBody, _ := io.ReadAll(response.Body)
 	defer response.Body.Close()
 
 	message := strings.Trim(string(byteBody), "\n")
