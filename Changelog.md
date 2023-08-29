@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.1.0](https://github.com/YasminTeles/new-server/compare/1.0.0...1.1.0) (2023-08-29)
+
+
+### Features
+
+* add timeout configs ([0c3a19e](https://github.com/YasminTeles/new-server/commit/0c3a19e4baeb998956853981bd0876332eb2f23a))
+
 # 1.0.0 (2021-11-01)
 
 
