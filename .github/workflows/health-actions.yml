@@ -1,6 +1,8 @@
 name: Check code health
 
-on: [push]
+on:
+  push:
+    branches: [ master, main ]
 
 jobs:
   Lint:
