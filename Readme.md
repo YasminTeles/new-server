@@ -89,6 +89,7 @@ This simple server provides the following end points:
 - **Docker support**;
 - **Structured and centralized logger**: using [Logrus](https://github.com/sirupsen/logrus);
 - **Continuous integration**: using [GitHub Actions](https://github.com/features/actions);
+- **Secrets Scan**: using [Gitleaks](https://github.com/gitleaks/gitleaks);
 - **Linting**: using [Golangci-lint](https://github.com/golangci/golangci-lint);
 - **Testing**: using [Testify](https://github.com/stretchr/testify);
 - **Request ID in request header and context**;
