@@ -15,9 +15,9 @@ ADD . /server
 RUN CGO_ENABLED=0 GOOS=linux make build
 
 # Run the tests in the container
-# FROM builder AS tester
+FROM builder AS tester
 
-# RUN make test
+RUN make test
 
 # Production image, copy all the files and run
 FROM golang:1.21-alpine AS runner
