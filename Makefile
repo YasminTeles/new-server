@@ -27,7 +27,7 @@ docker-build: ## Build container's Docker.
 	@docker build -t server .
 
 docker-run: ## Run container's Docker.
-	@docker run --name new-server -p 3000:3000 -it server
+	@docker run --name new-server -p 4000:4000 -it server
 
 docker-kill: ## Kill container's Docker.
 	@docker kill new-server

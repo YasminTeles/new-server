@@ -1,4 +1,4 @@
-port: 3000
+port: 4000
 logLevel: 4 # Info level
 timeout: 10000000000
 idleTimeout: 120000000000

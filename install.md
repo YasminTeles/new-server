@@ -19,7 +19,7 @@ These instructions will get you a copy of the project up and running on your loc
     make run
     ```
 
-3. Open <http://localhost:3000/healthcheck> with your browser to see the result.
+3. Open <http://localhost:4000/healthcheck> with your browser to see the result.
 
 ### Running tests
 
@@ -48,7 +48,7 @@ This project can run inside a docker container. Run the following commands to ru
     make docker-run
     ```
 
-3. Open <http://localhost:3000/healthcheck> with your browser to see the result.
+3. Open <http://localhost:4000/healthcheck> with your browser to see the result.
 
 4. For kill container's Docker, run the following command:
 

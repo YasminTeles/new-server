@@ -15,7 +15,7 @@ import (
 func TestHealthcheckEndPoint(t *testing.T) {
 	t.Parallel()
 
-	port := 3000
+	port := 4000
 	url := fmt.Sprintf("http://localhost:%d/healthcheck", port)
 	request, _ := http.NewRequestWithContext(context.Background(), http.MethodGet, url, nil)
 
