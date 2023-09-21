@@ -1,13 +1,30 @@
-FROM golang:1.21
+# Build the application from source
+FROM golang:1.21-alpine AS builder
 
-RUN mkdir /new-server
+RUN apk add --update make
 
-ADD . /new-server
+RUN mkdir /server
+WORKDIR /server
 
-WORKDIR /new-server
+COPY go.mod go.sum Makefile ./
 
 RUN make setup
-RUN make build
+
+ADD . /server
+
+RUN CGO_ENABLED=0 GOOS=linux make build
+
+# Run the tests in the container
+# FROM builder AS tester
+
+# RUN make test
+
+# Production image, copy all the files and run
+FROM golang:1.21-alpine AS runner
+
+WORKDIR /server
+
+COPY --from=builder /server ./
 
 EXPOSE 3000
 
