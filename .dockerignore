@@ -1,5 +1,5 @@
-### Go ###
-# Binaries for programs and plugins
+ <!-- Go  -->
+ <!-- Binaries for programs and plugins -->
 *.exe
 *.exe~
 *.dll
@@ -8,6 +8,16 @@
 
 main
 
-### Go Patch ###
+ <!-- Go Patch -->
 /vendor/
 /Godeps/
+
+ <!-- CI-CD -->
+/.github/
+.editorconfig
+.releaserc
+.gitignore
+
+<!-- Documentation -->
+*.md
+LICENSE
