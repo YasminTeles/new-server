@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.1](https://github.com/YasminTeles/new-server/compare/1.1.0...1.1.1) (2023-09-21)
+
+
+### Bug Fixes
+
+* change port to 4000 ([d2dafe0](https://github.com/YasminTeles/new-server/commit/d2dafe0b28e4be77ae15d6bcc8bce837a4c03db3))
+
 # [1.1.0](https://github.com/YasminTeles/new-server/compare/1.0.0...1.1.0) (2023-08-29)
 
 
