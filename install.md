@@ -23,17 +23,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Running tests
 
-1. Run the server
-
-    ```bash
-    make run
-    ```
-
-2. In another terminal, run the tests:
-
-    ```bash
-    make test
-    ```
+```bash
+make test
+```
 
 ## Docker Image
 
