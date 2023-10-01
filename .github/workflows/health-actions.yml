@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Golang
         uses: actions/setup-go@v4
@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Golang
         uses: actions/setup-go@v4
@@ -60,7 +60,7 @@ jobs:
       GO111MODULE: on
     steps:
       - name: Check out the repository code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Run Security Scanner
         uses: securego/gosec@master
