@@ -1,5 +1,5 @@
 # Build the application from source
-FROM golang:1.21-alpine AS builder
+FROM golang:1.22-alpine AS builder
 
 RUN apk add --update make
 
@@ -20,7 +20,7 @@ FROM builder AS tester
 RUN make test
 
 # Production image, copy all the files and run
-FROM golang:1.21-alpine AS runner
+FROM golang:1.22-alpine AS runner
 
 WORKDIR /server
 
