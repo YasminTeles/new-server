@@ -58,6 +58,8 @@ jobs:
     name: Docker Scan
     needs: Build
     runs-on: ubuntu-latest
+    permissions:
+      security-events: write
     steps:
       - name: Check out the repository code
         uses: actions/checkout@v4
