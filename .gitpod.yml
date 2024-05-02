@@ -1,0 +1,61 @@
+ports:
+  - name: Server
+    port: 4000
+    onOpen: ignore
+    visibility: public
+    protocol: http
+
+tasks:
+  - name: Show git log
+    init: git la
+
+  - name: Set up the server
+    init: make setup
+    command: make run
+    openMode: split-left
+
+vscode:
+  extensions:
+    - EditorConfig.EditorConfig
+    - golang.go
+    - rangav.vscode-thunder-client
+    - streetsidesoftware.code-spell-checker
+    - streetsidesoftware.code-spell-checker-portuguese-brazilian
+
+gitConfig:
+  user.name: Yasmin Teles
+  user.email: teles.yasmin.tech@gmail.com
+
+  credential.helper: cache
+
+  alias.la: log --oneline --graph --decorate --all
+  alias.st: status
+  alias.cf: commit --fixup
+  alias.cm: commit -m
+  alias.ca: commit -am
+  alias.cnm: commit --amend --no-edit
+  alias.sf: show --name-only
+  alias.df: diff
+  alias.ignore: "!sh -c '!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@"
+  alias.rup: "!sh -c 'git remote update -p $1 && git upm && git la' -"
+  alias.fat: fetch --all --tags
+  alias.cc: checkout
+  alias.mff: merge --ff-only
+  alias.del: "!sh -c 'git branch -D $1 && git push origin :$1' -"
+  alias.new: "!sh -c 'git checkout -b $1 && git push origin $1' -"
+  alias.psh: "!sh -c 'git push origin $(git branch --show-current) $1 && git la' -"
+  alias.bls: branch -vva
+  alias.dt: "!sh -c 'git tag -d $1 && git push origin :$1' -"
+  alias.up: "!sh -c 'git fetch origin $1:$1' -"
+  alias.upm: fetch origin main:main
+  alias.unstage: reset HEAD --
+  alias.rollback: reset --soft HEAD~1
+  alias.undo: checkout --
+  alias.ready: rebase -i @{u}
+
+  rebase.autosquash: "true"
+  fetch.prune: "true"
+
+  core.autocrlf: "false"
+
+  init.defaultbranch: main
