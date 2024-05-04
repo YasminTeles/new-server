@@ -33,16 +33,18 @@ This project can run inside a docker container. Run the following commands to ru
 
 1. Clone this repository and access the folder project;
 
-2. Run the following commands:
+2. Start Docker Desktop;
+
+3. Run the following commands:
 
     ```bash
     make docker-build
     make docker-run
     ```
 
-3. Open <http://localhost:4000/healthcheck> with your browser to see the result.
+4. Open <http://localhost:4000/healthcheck> with your browser to see the result.
 
-4. For kill container's Docker, run the following command:
+5. For kill container's Docker, run the following command:
 
     ```bash
     make docker-kill

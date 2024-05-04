@@ -8,8 +8,8 @@ It's intended as a starting point for your product or service. The server comes 
 
 To learn more about this project, take a look at the following resources:
 
-- [Local Install](install.md) - Learn about how to install and use this project.
-- [Architecture](history.md) - See all details about what technologies were used to build this project.
+- [Local Install](Install.md) - Learn about how to install and use this project.
+- [Architecture](Architecture.md) - See all details about what technologies were used to build this project.
 
 ## Versions
 

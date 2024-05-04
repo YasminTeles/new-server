@@ -8,7 +8,7 @@ This simple server provides the following end points:
  That returns the version of the server. It's useful for blue-green development.
 
 - `GET /healthcheck`
- That returns the health of the server running. It's useful for check if the server can be able handling requests.
+  That returns the health of the server running. It's useful for checking if the server can handle requests.
 
 ## Features
 
@@ -21,6 +21,7 @@ This simple server provides the following end points:
 - **Testing**: using [Testify](https://github.com/stretchr/testify);
 - **Request ID in request header and context**;
 - **Structured and centralized settings**: using [Viper](https://github.com/spf13/viper);
+- **Cloud developer platform support**: using [Gitpod](https://gitpod.io/);
 
 ## Versions
 
