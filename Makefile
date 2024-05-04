@@ -4,6 +4,10 @@ VERSION := 'github.com/YasminTeles/new-server/handlers.GitTag=$(shell git descri
 COMMIT := 'github.com/YasminTeles/new-server/handlers.GitCommit=$(shell git rev-list --oneline -1 HEAD)'
 BUILD := 'github.com/YasminTeles/new-server/handlers.BuildData=$(shell date +%F%t%T)'
 
+VERSION_TEST := 'github.com/YasminTeles/new-server/handlers.GitTag=1.0.1'
+COMMIT_TEST := 'github.com/YasminTeles/new-server/handlers.GitCommit=feat: add new route'
+BUILD_TEST := 'github.com/YasminTeles/new-server/handlers.BuildData=2024-05-04 18:39:59'
+
 help: ## Show help.
 	@printf "A set of development commands.\n"
 	@printf "\nUsage:\n"
@@ -18,7 +22,7 @@ run: ## Run local server.
 	@go run -ldflags "-X $(COMMIT) -X $(VERSION) -X $(BUILD)" main.go
 
 test: ## Run test.
-	@go test -v ./... -covermode=atomic
+	@go test -ldflags "-X $(COMMIT_TEST) -X $(VERSION_TEST) -X $(BUILD_TEST)" -v ./... -cover -covermode=atomic
 
 build: ## Build server.
 	@go build -v -ldflags "-X $(COMMIT) -X $(VERSION) -X $(BUILD)" -o main .

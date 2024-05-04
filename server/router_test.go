@@ -45,6 +45,24 @@ func (suite *ServerTestSuite) TestHealthcheckEndPoint() {
 	assert.Equal(suite.T(), "Working!", message)
 }
 
+func (suite *ServerTestSuite) TestVersionEndPoint() {
+	url := fmt.Sprintf("http://localhost:%s/version", settings.Config.Port)
+
+	request, _ := http.NewRequestWithContext(context.Background(), http.MethodGet, url, nil)
+
+	client := http.Client{}
+	response, _ := client.Do(request)
+
+	assert.Equal(suite.T(), http.StatusOK, response.StatusCode)
+
+	byteBody, _ := io.ReadAll(response.Body)
+	defer response.Body.Close()
+
+	version := strings.Trim(string(byteBody), "\n")
+
+	assert.Equal(suite.T(), `{"build":"2024-05-04 18:39:59","commit":"feat: add new route","version":"1.0.1"}`, version)
+}
+
 func TestClientTestSuite(t *testing.T) {
 	t.Parallel()
 
