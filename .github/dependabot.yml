@@ -10,6 +10,8 @@ updates:
       prefix: "chore"
     labels:
       - 'dependencies'
+    reviewers:
+      - "YasminTeles"
 
   - package-ecosystem: "docker"
     directory: "/"
@@ -20,6 +22,8 @@ updates:
       prefix: "chore"
     labels:
       - 'dependencies'
+    reviewers:
+      - "YasminTeles"
 
   - package-ecosystem: "gomod"
     directory: "/"
@@ -30,3 +34,5 @@ updates:
       prefix: "chore"
     labels:
       - 'dependencies'
+    reviewers:
+      - "YasminTeles"
